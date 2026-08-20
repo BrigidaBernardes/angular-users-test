@@ -1,7 +1,4 @@
-# Gestão de Usuários — Teste Técnico Angular (Seção 4)
-
-Aplicação Angular para listagem, cadastro e edição de usuários, reproduzindo o
-protótipo fornecido no desafio técnico.
+# Gestão de Usuários — Teste Técnico Angular
 
 ## Stack utilizada
 
@@ -11,11 +8,6 @@ protótipo fornecido no desafio técnico.
 - RxJS (`debounceTime`, `switchMap`, `catchError`, `map`, `tap`)
 - Jest + jest-preset-angular para testes unitários
 - SCSS
-
-## Pré-requisitos
-
-- Node.js 18.13+ ou 20.9+ (recomendado usar a versão LTS mais recente)
-- npm 9+
 
 ## Instalação
 
