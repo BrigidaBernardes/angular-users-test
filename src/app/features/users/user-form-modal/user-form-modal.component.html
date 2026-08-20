@@ -1,0 +1,83 @@
+<div class="form-modal">
+  <button
+    mat-icon-button
+    type="button"
+    class="form-modal__fechar"
+    aria-label="Fechar"
+    (click)="fechar()"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <h2 class="form-modal__titulo">{{ modoEdicao ? 'Editar usuário' : 'Adicionar novo usuário' }}</h2>
+
+  <form [formGroup]="formulario" (ngSubmit)="salvar()">
+    <div class="form-modal__conteudo">
+      <mat-form-field appearance="outline" class="form-modal__campo form-modal__campo--full">
+        <mat-label>Usuário (e-mail)</mat-label>
+        <input matInput formControlName="email" required autocomplete="email" />
+        @if (formulario.get('email')?.invalid && formulario.get('email')?.touched) {
+          <mat-error>{{ mensagemErro('email') }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-modal__campo form-modal__campo--full">
+        <mat-label>Nome completo</mat-label>
+        <input matInput formControlName="nome" required autocomplete="name" />
+        @if (formulario.get('nome')?.invalid && formulario.get('nome')?.touched) {
+          <mat-error>{{ mensagemErro('nome') }}</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="form-modal__linha">
+        <mat-form-field appearance="outline" class="form-modal__campo form-modal__campo--cpf">
+          <mat-label>CPF</mat-label>
+          <input matInput formControlName="cpf" required placeholder="000.000.000-00" />
+          @if (formulario.get('cpf')?.invalid && formulario.get('cpf')?.touched) {
+            <mat-error>{{ mensagemErro('cpf') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-modal__campo form-modal__campo--telefone">
+          <mat-label>Número do telefone</mat-label>
+          <input matInput formControlName="telefone" required placeholder="(11) 98765-4321" />
+          @if (formulario.get('telefone')?.invalid && formulario.get('telefone')?.touched) {
+            <mat-error>{{ mensagemErro('telefone') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-modal__campo form-modal__campo--tipo">
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="tipoTelefone">
+            @for (tipo of tiposTelefone; track tipo.valor) {
+              <mat-option [value]="tipo.valor">{{ tipo.rotulo }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <p class="form-modal__aviso">
+        O usuário receberá uma senha provisória para acesso ao sistema por SMS.
+      </p>
+
+      @if (erroSalvar()) {
+        <p class="form-modal__erro">{{ erroSalvar() }}</p>
+      }
+    </div>
+
+    <div class="form-modal__acoes">
+      <button
+        mat-raised-button
+        type="submit"
+        class="form-modal__botao-salvar"
+        [disabled]="formulario.invalid || salvando()"
+      >
+        @if (salvando()) {
+          <mat-spinner diameter="20"></mat-spinner>
+        } @else {
+          Salvar
+        }
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,117 @@
+.app-toolbar {
+  background-color: #424242;
+  color: white;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+
+  &__menu {
+    color: white;
+  }
+
+  &__titulo {
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-left: 4px;
+    white-space: nowrap;
+  }
+
+  &__espaco {
+    flex: 1 1 auto;
+  }
+
+  &__busca {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 0.16);
+    border-radius: 20px;
+    padding: 6px 16px;
+    width: 100%;
+    max-width: 320px;
+
+    mat-icon {
+      flex: 0 0 auto;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    input {
+      flex: 1 1 auto;
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: white;
+      font-size: 0.9rem;
+      font-family: inherit;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+}
+
+.pagina {
+  padding: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 96px;
+
+  &__legenda {
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0 0 12px 4px;
+  }
+
+  &__lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__estado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 64px 16px;
+    color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+
+    &--erro {
+      color: #c62828;
+    }
+  }
+
+  &__paginador {
+    background: transparent;
+    margin-top: 12px;
+  }
+}
+
+.botao-novo-usuario {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10;
+}
+
+@media (max-width: 599px) {
+  .app-toolbar__titulo {
+    display: none;
+  }
+
+  .app-toolbar__busca {
+    max-width: none;
+  }
+
+  .pagina {
+    padding: 16px;
+    padding-bottom: 96px;
+  }
+}

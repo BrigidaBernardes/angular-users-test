@@ -1,0 +1,66 @@
+<mat-toolbar class="app-toolbar">
+  <button mat-icon-button aria-label="Abrir menu" class="app-toolbar__menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="app-toolbar__titulo">Usuários</span>
+  <span class="app-toolbar__espaco"></span>
+  <div class="app-toolbar__busca">
+    <mat-icon>search</mat-icon>
+    <input
+      [formControl]="searchControl"
+      type="text"
+      placeholder="Pesquisar..."
+      aria-label="Filtrar usuários por nome"
+    />
+  </div>
+</mat-toolbar>
+
+<main class="pagina">
+  <p class="pagina__legenda">Usuários cadastrados</p>
+
+  @if (store.carregando()) {
+    <div class="pagina__estado">
+      <mat-spinner diameter="36"></mat-spinner>
+      <p>Carregando usuários...</p>
+    </div>
+  } @else if (store.erro()) {
+    <div class="pagina__estado pagina__estado--erro">
+      <mat-icon>error_outline</mat-icon>
+      <p>{{ store.erro() }}</p>
+      <button mat-stroked-button color="primary" (click)="tentarNovamente()">Tentar novamente</button>
+    </div>
+  } @else if (store.usuarios().length === 0) {
+    <div class="pagina__estado">
+      <mat-icon>person_off</mat-icon>
+      <p>Nenhum usuário encontrado.</p>
+    </div>
+  } @else {
+    <div class="pagina__lista">
+      @for (usuario of usuariosPaginados(); track usuario.id) {
+        <app-user-card [usuario]="usuario" (editar)="abrirModalEdicao($event)"></app-user-card>
+      }
+    </div>
+
+    @if (store.usuarios().length > pageSize()) {
+      <mat-paginator
+        class="pagina__paginador"
+        [length]="store.usuarios().length"
+        [pageIndex]="pageIndex()"
+        [pageSize]="pageSize()"
+        [pageSizeOptions]="[6, 12, 24]"
+        (page)="aoMudarPagina($event)"
+        aria-label="Selecionar página"
+      ></mat-paginator>
+    }
+  }
+</main>
+
+<button
+  mat-fab
+  color="warn"
+  class="botao-novo-usuario"
+  aria-label="Cadastrar novo usuário"
+  (click)="abrirModalNovoUsuario()"
+>
+  <mat-icon>add</mat-icon>
+</button>

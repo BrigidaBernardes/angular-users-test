@@ -1,0 +1,15 @@
+<mat-card class="user-card">
+  <div class="user-card__conteudo">
+    <mat-icon class="user-card__icone">person</mat-icon>
+    <span class="user-card__nome">{{ usuario.nome }}</span>
+    <span class="user-card__email">{{ usuario.email }}</span>
+    <button
+      mat-icon-button
+      class="user-card__editar"
+      (click)="aoClicarEditar()"
+      [attr.aria-label]="'Editar ' + usuario.nome"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+</mat-card>

@@ -1,0 +1,86 @@
+.form-modal {
+  position: relative;
+  padding: 28px 24px 20px;
+  min-width: 280px;
+
+  &__fechar {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+
+  &__titulo {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 32px 20px 0;
+  }
+
+  &__conteudo {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__campo {
+    width: 100%;
+
+    &--full {
+      margin-bottom: 4px;
+    }
+  }
+
+  &__linha {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  &__campo--cpf {
+    flex: 1.3 1 0;
+    min-width: 0;
+  }
+
+  &__campo--telefone {
+    flex: 1.3 1 0;
+    min-width: 0;
+  }
+
+  &__campo--tipo {
+    flex: 0.9 1 0;
+    min-width: 0;
+  }
+
+  &__aviso {
+    color: #1976d2;
+    font-style: italic;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin: 4px 0 20px;
+  }
+
+  &__erro {
+    color: #c62828;
+    font-size: 0.85rem;
+    margin: 0 0 16px;
+  }
+
+  &__acoes {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__botao-salvar {
+    background-color: #1976d2 !important;
+    color: #ffffff !important;
+    min-width: 96px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-modal__linha {
+    flex-direction: column;
+  }
+}
